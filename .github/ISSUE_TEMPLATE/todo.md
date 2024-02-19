@@ -1,9 +1,13 @@
-name: "Todo"
-description: "할 일이 있으신가요? 🙋‍️"
-labels: feat
-body:
+---
+name: Todo
+about: "할 일이 있으신가요? \U0001F64B"
+title: ''
+labels: ''
+assignees: ''
 
-  - type: textarea
+---
+
+- type: textarea
     attributes:
       label: Describe
       description: |

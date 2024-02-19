@@ -1,9 +1,13 @@
-name: "Bug"
-description: "버그가 생겼어요 👾"
-labels: 👾bug
-body:
+---
+name: Bug
+about: "버그가 생겼어요 \U0001F47E"
+title: ''
+labels: ''
+assignees: ''
 
-  - type: textarea
+---
+
+- type: textarea
     attributes:
       label: Describe
       description: |
