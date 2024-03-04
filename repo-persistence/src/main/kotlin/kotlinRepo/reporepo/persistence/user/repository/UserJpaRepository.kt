@@ -13,6 +13,8 @@ interface UserJpaRepository : JpaRepository<UserJpaEntity, UUID> {
 
     fun findByUsername(username: String?) : UserJpaEntity
 
+    fun findByEmail(email: String?) : UserJpaEntity
+
     fun findUserJpaEntityById(userId: UUID) : UserJpaEntity
 
     fun existsByAccountId(accountId: String?) : Boolean
