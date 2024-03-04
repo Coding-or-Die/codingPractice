@@ -25,4 +25,7 @@ class GetUserServiceImpl (
     override fun queryUserByAccountId(accountId: String) =
         queryUserPort.queryUserByAccountId(accountId) ?: throw UserNotFoundException
 
+    override fun queryUserByEmail(email: String): User =
+        queryUserPort.queryUserByEmail(email) ?: throw UserNotFoundException
+
 }
