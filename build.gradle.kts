@@ -6,6 +6,7 @@ plugins {
 	kotlin("jvm") version "1.9.21"
 }
 
+
 group = "kotlinRepo"
 version = "0.0.1-SNAPSHOT"
 

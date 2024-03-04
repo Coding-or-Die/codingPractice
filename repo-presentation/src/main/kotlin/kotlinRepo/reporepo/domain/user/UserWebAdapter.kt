@@ -6,8 +6,11 @@ import kotlinRepo.reporepo.domain.user.dto.request.LoginRequest
 import kotlinRepo.reporepo.domain.user.dto.request.SignupRequest
 import kotlinRepo.reporepo.domain.user.dto.request.LoginWebRequest
 import kotlinRepo.reporepo.domain.user.dto.request.SignupWebRequest
+import kotlinRepo.reporepo.domain.user.dto.response.MypageResponse
 import kotlinRepo.reporepo.domain.user.usecase.LoginUseCase
+import kotlinRepo.reporepo.domain.user.usecase.MypageUseCase
 import kotlinRepo.reporepo.domain.user.usecase.SignupUseCase
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class UserWebAdapter (
     private val signupUseCase: SignupUseCase,
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
+    private val mypageUseCase: MypageUseCase
 ) {
 
     @PostMapping("/signup")
@@ -38,5 +42,10 @@ class UserWebAdapter (
 
         )
         return loginUseCase.execute(request)
+    }
+
+    @GetMapping("/mypage")
+    fun mypage() : MypageResponse {
+        return mypageUseCase.execute()
     }
 }
