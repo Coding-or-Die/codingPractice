@@ -19,6 +19,9 @@ class UserJpaEntity (
     val accountId: String,
 
     @Column(columnDefinition = "CHAR(60)", nullable = false)
-    val password: String
+    val password: String,
+
+    @Column(columnDefinition = "VARCHAR(255)", nullable = false)
+    val email: String
 
 ) : BaseUUIDEntity(id)
