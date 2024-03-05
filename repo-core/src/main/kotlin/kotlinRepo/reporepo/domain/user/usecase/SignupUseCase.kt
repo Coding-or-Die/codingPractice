@@ -23,7 +23,8 @@ class SignupUseCase(
             User(
                 userName = request.username,
                 accountId = request.accountId,
-                password = securityService.encodePassword(request.password)
+                password = securityService.encodePassword(request.password),
+                email = request.email
             )
         )
 

@@ -13,5 +13,8 @@ data class SignupWebRequest(
 
     @field:NotBlank
     @field:Size(min = 8, max = 20)
-    val password: String
+    val password: String,
+
+    @field:NotBlank
+    val email: String
 )

@@ -29,7 +29,8 @@ class UserWebAdapter (
         val request = SignupRequest(
             username =  webRequest.username,
             accountId = webRequest.accountId,
-            password = webRequest.password
+            password = webRequest.password,
+            email = webRequest.email
         )
          return signupUseCase.execute(request)
     }
