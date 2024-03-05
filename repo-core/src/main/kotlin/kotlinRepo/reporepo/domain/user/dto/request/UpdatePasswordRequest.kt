@@ -1,6 +1,6 @@
 package kotlinRepo.reporepo.domain.user.dto.request
 
-data class ResetPasswordRequest (
+data class UpdatePasswordRequest (
     val email: String,
 
     val authcode: String,

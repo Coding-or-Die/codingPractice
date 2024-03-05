@@ -2,11 +2,16 @@ package kotlinRepo.reporepo.domain.user
 
 import jakarta.validation.Valid
 import kotlinRepo.reporepo.domain.auth.dto.response.TokenResponse
-import kotlinRepo.reporepo.domain.user.dto.request.*
+import kotlinRepo.reporepo.domain.user.dto.request.LoginRequest
+import kotlinRepo.reporepo.domain.user.dto.request.SignupRequest
+import kotlinRepo.reporepo.domain.user.dto.request.UpdatePasswordRequest
+import kotlinRepo.reporepo.domain.user.dto.request.UpdatePasswordWebRequest
+import kotlinRepo.reporepo.domain.user.dto.request.LoginWebRequest
+import kotlinRepo.reporepo.domain.user.dto.request.SignupWebRequest
 import kotlinRepo.reporepo.domain.user.dto.response.MypageResponse
 import kotlinRepo.reporepo.domain.user.usecase.LoginUseCase
 import kotlinRepo.reporepo.domain.user.usecase.MypageUseCase
-import kotlinRepo.reporepo.domain.user.usecase.ResetPasswordUseCase
+import kotlinRepo.reporepo.domain.user.usecase.UpdatePasswordUseCase
 import kotlinRepo.reporepo.domain.user.usecase.SignupUseCase
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
@@ -21,7 +26,7 @@ class UserWebAdapter (
     private val signupUseCase: SignupUseCase,
     private val loginUseCase: LoginUseCase,
     private val mypageUseCase: MypageUseCase,
-    private val resetPasswordUseCase: ResetPasswordUseCase
+    private val updatePasswordUseCase: UpdatePasswordUseCase
 ) {
 
     @PostMapping("/signup")
@@ -50,14 +55,14 @@ class UserWebAdapter (
         return mypageUseCase.execute()
     }
 
-    @PatchMapping("/reset-password")
-    fun resetPassword(@RequestBody @Valid webRequest: ResetPasswordWebRequest) {
-        val request = ResetPasswordRequest(
+    @PatchMapping("/password")
+    fun updatePassword(@RequestBody @Valid webRequest: UpdatePasswordWebRequest) {
+        val request = UpdatePasswordRequest(
             email = webRequest.email,
             authcode = webRequest.authcode,
             accountId = webRequest.accountId,
             newPassword = webRequest.newPassword
             )
-        resetPasswordUseCase.execute(request)
+        updatePasswordUseCase.execute(request)
     }
 }

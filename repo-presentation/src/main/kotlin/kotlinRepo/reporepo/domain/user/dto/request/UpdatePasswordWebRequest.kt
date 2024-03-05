@@ -3,7 +3,7 @@ package kotlinRepo.reporepo.domain.user.dto.request
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
 
-data class ResetPasswordWebRequest (
+data class UpdatePasswordWebRequest (
 
     @field:NotBlank
     val email: String,
@@ -17,6 +17,4 @@ data class ResetPasswordWebRequest (
     @field:NotBlank
     @field:Size(min = 8, max = 20)
     val newPassword: String,
-
-
 )
