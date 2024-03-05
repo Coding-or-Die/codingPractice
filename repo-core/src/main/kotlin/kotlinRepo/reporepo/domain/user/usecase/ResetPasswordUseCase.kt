@@ -2,6 +2,7 @@ package kotlinRepo.reporepo.domain.user.usecase
 
 import kotlinRepo.reporepo.common.annotation.UseCase
 import kotlinRepo.reporepo.domain.user.dto.request.ResetPasswordRequest
+import kotlinRepo.reporepo.domain.user.exception.UserNotFoundException
 import kotlinRepo.reporepo.domain.user.model.User
 import kotlinRepo.reporepo.domain.user.service.UserService
 
@@ -17,7 +18,7 @@ class ResetPasswordUseCase(
 
         val userByAccountId = userService.queryUserByAccountId(request.accountId)
 
-        val user = if (userByEmail.id == userByAccountId.id) userByEmail else throw RuntimeException("이메일 주소 혹은 계정 ID가 일치하지 않습니다.")
+        val user = if (userByEmail.id == userByAccountId.id) userByEmail else throw UserNotFoundException
 
         userService.saveUser(User(
             id = user.id,
