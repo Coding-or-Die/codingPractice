@@ -1,8 +1,7 @@
 package kotlinRepo.reporepo.persistence.user.repository
 
 import kotlinRepo.reporepo.persistence.user.entity.UserJpaEntity
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.jpa.repository.JpaRepository    
 import org.springframework.stereotype.Repository
 import java.util.*
 
@@ -13,7 +12,7 @@ interface UserJpaRepository : JpaRepository<UserJpaEntity, UUID> {
 
     fun findByUsername(username: String?) : UserJpaEntity
 
-    fun findByEmail(email: String?) : UserJpaEntity
+    fun findByEmail(email: String) : UserJpaEntity
 
     fun findUserJpaEntityById(userId: UUID) : UserJpaEntity
 
