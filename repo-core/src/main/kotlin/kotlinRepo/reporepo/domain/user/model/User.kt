@@ -10,6 +10,8 @@ data class User(
 
     val userName: String,
 
+    val email: String,
+
     val accountId: String,
 
     val password: String,

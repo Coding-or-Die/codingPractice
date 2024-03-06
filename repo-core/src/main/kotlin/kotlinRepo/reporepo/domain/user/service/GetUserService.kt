@@ -10,4 +10,7 @@ interface GetUserService {
     fun getCurrentUser() : User
 
     fun queryUserByAccountId(accountId: String) : User
+
+    fun queryUserByEmail(email: String) : User
+
 }

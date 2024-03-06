@@ -4,4 +4,6 @@ interface CheckUserService {
 
     fun checkUserExistsByAccountId(accountId: String)
 
+    fun checkUserInformation(accountId: String, email: String)
+
 }
