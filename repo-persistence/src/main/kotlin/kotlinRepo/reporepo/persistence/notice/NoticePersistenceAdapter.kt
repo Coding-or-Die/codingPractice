@@ -5,6 +5,7 @@ import kotlinRepo.reporepo.domain.notice.spi.NoticePort
 import kotlinRepo.reporepo.persistence.notice.mapper.NoticeMapper
 import kotlinRepo.reporepo.persistence.notice.repository.NoticeJpaRepository
 import org.springframework.stereotype.Component
+import kotlin.streams.toList
 
 @Component
 class NoticePersistenceAdapter(
@@ -13,7 +14,10 @@ class NoticePersistenceAdapter(
 ) : NoticePort {
 
     override fun findAllOrderByCreateAtDesc() =
-        noticeJpaRepository.findAllOrderByCreateAtDesc().map {it -> noticeMapper.toDomain(it)!!}
+        noticeJpaRepository.findAll().map {noticeMapper.toDomain(it)!!}
+            .stream().sorted {n1, n2 -> n1.createAt.compareTo(n2.createAt)}
+            .toList().filterNotNull()
+
 
     override fun saveNotice(notice: Notice): Notice = noticeMapper.toDomain(
         noticeJpaRepository.save(

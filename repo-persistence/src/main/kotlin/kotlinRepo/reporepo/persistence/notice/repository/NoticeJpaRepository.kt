@@ -8,6 +8,4 @@ import java.util.UUID
 @Repository
 interface NoticeJpaRepository : JpaRepository<NoticeJpaEntity, UUID> {
 
-    fun findAllOrderByCreateAtDesc() : Array<NoticeJpaEntity>
-
 }
