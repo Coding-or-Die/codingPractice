@@ -21,7 +21,7 @@ class JwtParser(
     fun getAuthentication(token: String): Authentication {
 
         val claims = getClaims(token)
-        if (claims.header[Header.JWT_TYPE] == "access") {
+        if (claims.header[Header.JWT_TYPE] != JwtProperties.ACCESS) {
             throw InvalidTokenException.EXCEPTION
         }
 
@@ -31,11 +31,12 @@ class JwtParser(
 
     private fun getClaims(token: String): Jws<Claims> {
         return try {
-            Jwts
-                .parser()
+            Jwts.parserBuilder()
                 .setSigningKey(securityProperties.secretKey)
+                .build()
                 .parseClaimsJws(token)
         } catch (e: Exception) {
+            println(e)
             when (e) {
                 is ExpiredTokenException -> throw ExpiredTokenException.EXCEPTION
                 else -> throw InvalidTokenException.EXCEPTION
