@@ -6,13 +6,14 @@ import java.util.UUID
 
 @Aggregate
 data class Notice (
+
     val id: UUID = UUID(0, 0),
 
     val title: String,
 
-    val subtitle: String,
+    val content: String,
 
-    val createAt: LocalDateTime,
+    val createdAt: LocalDateTime,
 
     val writerId: UUID
 )

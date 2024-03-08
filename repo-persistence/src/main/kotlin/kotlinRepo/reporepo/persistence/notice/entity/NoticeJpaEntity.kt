@@ -15,14 +15,13 @@ class NoticeJpaEntity (
 
     id: UUID?,
 
-    @Column
+    @Column(columnDefinition = "VARCHAR(100)", nullable = false)
     val title: String,
 
-    @Column
-    val subtitle: String,
+    @Column(columnDefinition = "VARCHAR(1000)", nullable = false)
+    val content: String,
 
-    @Column
-    val createAt: LocalDateTime,
+    override val createdAt: LocalDateTime,
 
     @ManyToOne
     val writer: UserJpaEntity?

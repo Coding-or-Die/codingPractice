@@ -6,6 +6,8 @@ import kotlinRepo.reporepo.persistence.notice.entity.NoticeJpaEntity
 import kotlinRepo.reporepo.persistence.user.repository.UserJpaRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
+import java.util.Optional
+import kotlin.jvm.optionals.getOrNull
 
 @Component
 class NoticeMapper(
@@ -17,22 +19,21 @@ class NoticeMapper(
             Notice(
                 id = it.id!!,
                 title = it.title,
-                subtitle = it.subtitle,
+                content = it.content,
                 writerId = it.writer?.id!!,
-                createAt = it.createAt
+                createdAt = it.createdAt
             )
         }
     }
 
     override fun toEntity(domain: Notice): NoticeJpaEntity {
         val writer = domain.writerId.let { userJpaRepository.findByIdOrNull(it) }
-
         return NoticeJpaEntity(
             id = domain.id,
             title = domain.title,
-            subtitle = domain.subtitle,
+            content = domain.content,
             writer = writer,
-            createAt = domain.createAt
+            createdAt = domain.createdAt
         )
     }
 }

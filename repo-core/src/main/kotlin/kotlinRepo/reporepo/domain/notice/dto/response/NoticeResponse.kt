@@ -5,6 +5,8 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 data class NoticeResponse (
+    val id : UUID,
+
     val title : String,
 
     val subtitle : String,
@@ -16,9 +18,10 @@ data class NoticeResponse (
 ) {
     companion object {
         fun of (notice: Notice) = NoticeResponse (
+            notice.id,
             notice.title,
-            notice.subtitle,
-            notice.createAt,
+            notice.content,
+            notice.createdAt,
             notice.writerId
         )
     }

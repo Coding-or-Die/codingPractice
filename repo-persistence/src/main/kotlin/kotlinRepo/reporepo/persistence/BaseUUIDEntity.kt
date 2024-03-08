@@ -10,10 +10,13 @@ import java.util.UUID
 @MappedSuperclass
 abstract class BaseUUIDEntity(
 
+    id: UUID?,
+
+
+) : BaseTimeEntity() {
     @Id
     @GeneratedValue(generator = "timeBasedUUID")
     @GenericGenerator(name = "timeBasedUUID", strategy = "kotlinRepo.reporepo.persistence.TimeBasedUUIDGenerator")
     @Column(columnDefinition = "BINARY(16)", nullable = false)
-    val id: UUID?
-
-) : BaseTimeEntity()
+    val id: UUID? = if (id == UUID(0, 0)) null else id
+}
