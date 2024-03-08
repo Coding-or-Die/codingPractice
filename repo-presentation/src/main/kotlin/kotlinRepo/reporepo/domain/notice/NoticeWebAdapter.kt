@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 class NoticeWebAdapter (
     private val getNoticeListUseCase: GetNoticeListUseCase
 ) {
-    @GetMapping("/")
+    @GetMapping
     fun getNoticeList(): List<NoticeResponse> {
         return getNoticeListUseCase.execute()
     }
