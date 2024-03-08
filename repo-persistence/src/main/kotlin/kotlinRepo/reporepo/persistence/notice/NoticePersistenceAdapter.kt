@@ -28,7 +28,20 @@ class NoticePersistenceAdapter(
             }
     }
 
-    override fun saveNotice(notice: Notice): Notice = noticeMapper.toDomain(
+    override fun findById(noticeId: UUID) : Notice? {
+        val notice = QNoticeJpaEntity.noticeJpaEntity
+
+        return jpaQueryFactory
+            .selectFrom(notice)
+            .where(notice.id.eq(noticeId))
+            .orderBy(notice.createdAt.desc())
+            .fetch()
+            .first().run {
+                noticeMapper.toDomain(this)!!
+            }
+    }
+
+    override fun saveNotice(notice: Notice) = noticeMapper.toDomain(
         noticeJpaRepository.save(
             noticeMapper.toEntity(notice)
         )
