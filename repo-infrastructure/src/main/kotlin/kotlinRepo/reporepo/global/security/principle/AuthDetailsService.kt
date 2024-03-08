@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Component
+import java.util.UUID
 
 @Component
 class AuthDetailsService(
@@ -12,7 +13,7 @@ class AuthDetailsService(
 ): UserDetailsService {
 
     override fun loadUserByUsername(username: String?): UserDetails {
-        val user = queryUserPort.queryUserByUsername(username)
+        val user = queryUserPort.queryUserById(UUID.fromString(username))
             ?: throw UsernameNotFoundException("User not found with username: $username")
         return AuthDetails(
             userId = user.id

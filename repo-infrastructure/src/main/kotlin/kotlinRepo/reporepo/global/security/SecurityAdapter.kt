@@ -5,7 +5,7 @@ import kotlinRepo.reporepo.global.security.principle.CustomDetails
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
-import java.util.*
+import java.util.UUID
 
 @Component
 class SecurityAdapter(
