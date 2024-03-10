@@ -1,7 +1,8 @@
 package kotlinRepo.reporepo.domain.notice
 
 import kotlinRepo.reporepo.domain.notice.dto.response.NoticeResponse
-import kotlinRepo.reporepo.domain.notice.usecase.GetNoticeListUseCase
+import kotlinRepo.reporepo.domain.notice.dto.response.NoticesResponse
+import kotlinRepo.reporepo.domain.notice.usecase.GetNoticesUseCase
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -9,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/notice")
 class NoticeWebAdapter (
-    private val getNoticeListUseCase: GetNoticeListUseCase
+    private val getNoticesUseCase: GetNoticesUseCase
 ) {
     @GetMapping
     fun getNoticeList(): List<NoticeResponse> {
-        return getNoticeListUseCase.execute()
+        return getNoticesUseCase.execute()
     }
 }
