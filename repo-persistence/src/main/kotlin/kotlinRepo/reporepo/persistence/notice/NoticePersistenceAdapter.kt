@@ -1,6 +1,8 @@
 package kotlinRepo.reporepo.persistence.notice
 
 import com.querydsl.jpa.impl.JPAQueryFactory
+import kotlinRepo.reporepo.domain.notice.dto.response.NoticeResponse
+import kotlinRepo.reporepo.domain.notice.dto.response.NoticesResponse
 import kotlinRepo.reporepo.domain.notice.model.Notice
 import kotlinRepo.reporepo.domain.notice.spi.NoticePort
 import kotlinRepo.reporepo.persistence.notice.entity.QNoticeJpaEntity
@@ -16,7 +18,7 @@ class NoticePersistenceAdapter(
     private val jpaQueryFactory: JPAQueryFactory
 ) : NoticePort {
 
-    override fun findAllOrderByCreateAtDesc() : List<Notice> {
+    override fun findAllOrderByCreateAtDesc() : NoticesResponse {
         val notice = QNoticeJpaEntity.noticeJpaEntity
 
         return jpaQueryFactory
@@ -24,7 +26,9 @@ class NoticePersistenceAdapter(
             .orderBy(notice.createdAt.desc())
             .fetch()
             .map {
-                noticeMapper.toDomain(it)!!
+                NoticeResponse.of(noticeMapper.toDomain(it)!!)
+            }.let {
+                NoticesResponse(it)
             }
     }
 

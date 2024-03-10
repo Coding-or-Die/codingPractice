@@ -13,7 +13,7 @@ class NoticeWebAdapter (
     private val getNoticesUseCase: GetNoticesUseCase
 ) {
     @GetMapping
-    fun getNoticeList(): List<NoticeResponse> {
+    fun getNoticeList(): NoticesResponse {
         return getNoticesUseCase.execute()
     }
 }
