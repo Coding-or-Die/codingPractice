@@ -13,12 +13,12 @@ import java.util.UUID
 @Table(name = "tbl_notice")
 class NoticeJpaEntity (
 
-    id: UUID?,
+    id: UUID,
 
     @Column(columnDefinition = "VARCHAR(100)", nullable = false)
     val title: String,
 
-    @Column(columnDefinition = "VARCHAR(1000)", nullable = false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     val content: String,
 
     override val createdAt: LocalDateTime,

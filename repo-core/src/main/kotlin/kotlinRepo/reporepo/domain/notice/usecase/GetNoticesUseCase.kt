@@ -1,15 +1,14 @@
 package kotlinRepo.reporepo.domain.notice.usecase
 
 import kotlinRepo.reporepo.common.annotation.UseCase
-import kotlinRepo.reporepo.domain.notice.dto.response.NoticeResponse
+import kotlinRepo.reporepo.domain.notice.dto.response.NoticesResponse
 import kotlinRepo.reporepo.domain.notice.service.NoticeService
 
 @UseCase
-class GetNoticeListUseCase (
+class GetNoticesUseCase (
     private val noticeService: NoticeService
 ) {
-    fun execute() : List<NoticeResponse> {
+    fun execute() : NoticesResponse {
         return noticeService.queryNoticeOrderByCreateAtDesc()
-            .map(NoticeResponse.Companion::of)
     }
 }

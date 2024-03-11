@@ -1,5 +1,6 @@
 package kotlinRepo.reporepo.global.security
 
+import kotlinRepo.reporepo.global.filter.FilterConfig
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
@@ -13,7 +14,9 @@ import org.springframework.security.web.SecurityFilterChain
 
 @EnableWebSecurity
 @Configuration
-class SecurityConfig {
+class SecurityConfig (
+    private val filterConfig: FilterConfig
+) {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder = BCryptPasswordEncoder()
@@ -27,6 +30,7 @@ class SecurityConfig {
             .authorizeHttpRequests { authorizeRequests ->
                 authorizeRequests.anyRequest().permitAll()
             }
+            .apply(filterConfig).and()
             .build()
     }
 

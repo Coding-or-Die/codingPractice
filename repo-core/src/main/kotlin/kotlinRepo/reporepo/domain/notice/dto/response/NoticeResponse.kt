@@ -26,3 +26,9 @@ data class NoticeResponse (
         )
     }
 }
+
+data class NoticesResponse (
+
+    val notices: List<NoticeResponse>
+
+)
