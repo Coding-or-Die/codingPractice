@@ -13,7 +13,7 @@ import java.util.UUID
 @Table(name = "tbl_notice")
 class NoticeJpaEntity (
 
-    id: UUID?,
+    id: UUID,
 
     @Column(columnDefinition = "VARCHAR(100)", nullable = false)
     val title: String,
