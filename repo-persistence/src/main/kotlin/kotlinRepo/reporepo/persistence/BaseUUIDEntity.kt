@@ -14,6 +14,8 @@ abstract class BaseUUIDEntity(
     @GeneratedValue(generator = "timeBasedUUID")
     @GenericGenerator(name = "timeBasedUUID", strategy = "kotlinRepo.reporepo.persistence.TimeBasedUUIDGenerator")
     @Column(columnDefinition = "BINARY(16)", nullable = false)
-    val id: UUID?
+    val id: UUID,
 
-) : BaseTimeEntity()
+) : BaseTimeEntity() {
+
+}

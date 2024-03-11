@@ -14,7 +14,8 @@ class UserMapper() : GenericMapper<User, UserJpaEntity> {
                 id = it.id!!,
                 userName = it.username,
                 accountId = it.accountId,
-                password = it.password
+                password = it.password,
+                email = it.email
             )
         }
     }
@@ -24,7 +25,8 @@ class UserMapper() : GenericMapper<User, UserJpaEntity> {
             id = domain.id,
             username = domain.userName,
             accountId = domain.accountId,
-            password = domain.password
+            password = domain.password,
+            email = domain.email
         )
     }
 }

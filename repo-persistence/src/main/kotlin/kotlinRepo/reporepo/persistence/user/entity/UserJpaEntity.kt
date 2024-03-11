@@ -10,7 +10,7 @@ import java.util.*
 @Table(name = "tbl_user")
 class UserJpaEntity (
 
-    id: UUID?,
+    id: UUID,
 
     @Column(columnDefinition = "CHAR(5)", nullable = false)
     val username: String,

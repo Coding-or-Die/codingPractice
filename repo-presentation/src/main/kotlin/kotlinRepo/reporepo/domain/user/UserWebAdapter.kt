@@ -13,14 +13,16 @@ import kotlinRepo.reporepo.domain.user.usecase.LoginUseCase
 import kotlinRepo.reporepo.domain.user.usecase.MypageUseCase
 import kotlinRepo.reporepo.domain.user.usecase.UpdatePasswordUseCase
 import kotlinRepo.reporepo.domain.user.usecase.SignupUseCase
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RestController
 class UserWebAdapter (
     private val signupUseCase: SignupUseCase,
@@ -55,6 +57,7 @@ class UserWebAdapter (
         return mypageUseCase.execute()
     }
 
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
     @PatchMapping("/password")
     fun updatePassword(@RequestBody @Valid webRequest: UpdatePasswordWebRequest) {
         val request = UpdatePasswordRequest(

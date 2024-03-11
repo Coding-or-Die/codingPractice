@@ -5,9 +5,9 @@ import jakarta.persistence.MappedSuperclass
 import java.time.LocalDateTime
 
 @MappedSuperclass
-abstract class BaseTimeEntity {
+abstract class BaseTimeEntity(
 
     @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(6)")
-    val createdAt: LocalDateTime = LocalDateTime.now()
+    open val createdAt: LocalDateTime = LocalDateTime.now()
 
-}
+)
