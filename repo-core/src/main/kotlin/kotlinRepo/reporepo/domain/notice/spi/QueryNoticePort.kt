@@ -6,7 +6,7 @@ import java.util.UUID
 
 interface QueryNoticePort {
 
-    fun findAllOrderByCreateAtDesc() : NoticesResponsez
+    fun findAllOrderByCreateAtDesc() : NoticesResponse
 
     fun findById(noticeId: UUID): Notice?
 
