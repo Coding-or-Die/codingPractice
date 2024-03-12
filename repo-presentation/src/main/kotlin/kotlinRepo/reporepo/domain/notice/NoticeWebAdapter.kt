@@ -1,7 +1,7 @@
 package kotlinRepo.reporepo.domain.notice
 
-import kotlinRepo.reporepo.domain.notice.dto.response.NoticeResponse
-import kotlinRepo.reporepo.domain.notice.usecase.GetNoticeDetailsUseCase
+import kotlinRepo.reporepo.domain.notice.dto.response.NoticeDetailResponse
+import kotlinRepo.reporepo.domain.notice.usecase.GetNoticeDetailUseCase
 import kotlinRepo.reporepo.domain.notice.dto.response.NoticesResponse
 import kotlinRepo.reporepo.domain.notice.usecase.GetNoticesUseCase
 import org.springframework.web.bind.annotation.GetMapping
@@ -14,15 +14,15 @@ import java.util.UUID
 @RequestMapping("/notices")
 class NoticeWebAdapter (
     private val getNoticesUseCase: GetNoticesUseCase,
-    private val getNoticeDetailsUseCase: GetNoticeDetailsUseCase,
+    private val getNoticeDetailUseCase: GetNoticeDetailUseCase,
 ) {
     @GetMapping
-    fun getNoticeList(): NoticesResponse {
+    fun getNotices(): NoticesResponse {
         return getNoticesUseCase.execute()
     }
 
     @GetMapping("/{notice-id}")
-    fun getNoticeDetails(@PathVariable("notice-id") noticeId: UUID) : NoticeResponse {
-        return getNoticeDetailsUseCase.execute(noticeId)
+    fun getNoticeDetail(@PathVariable("notice-id") noticeId: UUID) : NoticeDetailResponse {
+        return getNoticeDetailUseCase.execute(noticeId)
     }
 }

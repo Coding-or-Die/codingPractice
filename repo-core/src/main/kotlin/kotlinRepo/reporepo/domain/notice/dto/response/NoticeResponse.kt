@@ -9,8 +9,6 @@ data class NoticeResponse (
 
     val title : String,
 
-    val subtitle : String,
-
     val createAt : LocalDateTime,
 
     val writerId : UUID
@@ -18,6 +16,27 @@ data class NoticeResponse (
 ) {
     companion object {
         fun of (notice: Notice) = NoticeResponse (
+            notice.id,
+            notice.title,
+            notice.createdAt,
+            notice.writerId
+        )
+    }
+}
+data class NoticeDetailResponse (
+    val id : UUID,
+
+    val title : String,
+
+    val content : String,
+
+    val createAt : LocalDateTime,
+
+    val writerId : UUID
+
+) {
+    companion object {
+        fun of (notice: Notice) = NoticeDetailResponse (
             notice.id,
             notice.title,
             notice.content,
