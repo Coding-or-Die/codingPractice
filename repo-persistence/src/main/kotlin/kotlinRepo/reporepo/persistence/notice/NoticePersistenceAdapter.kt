@@ -8,6 +8,7 @@ import kotlinRepo.reporepo.domain.notice.spi.NoticePort
 import kotlinRepo.reporepo.persistence.notice.entity.QNoticeJpaEntity
 import kotlinRepo.reporepo.persistence.notice.mapper.NoticeMapper
 import kotlinRepo.reporepo.persistence.notice.repository.NoticeJpaRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 import java.util.UUID
 
@@ -32,18 +33,9 @@ class NoticePersistenceAdapter(
             }
     }
 
-    override fun findById(noticeId: UUID) : Notice? {
-        val notice = QNoticeJpaEntity.noticeJpaEntity
-
-        return jpaQueryFactory
-            .selectFrom(notice)
-            .where(notice.id.eq(noticeId))
-            .orderBy(notice.createdAt.desc())
-            .fetch()
-            .first().run {
-                noticeMapper.toDomain(this)!!
-            }
-    }
+    override fun findById(noticeId: UUID) = noticeMapper.toDomain(
+        noticeJpaRepository.findByIdOrNull(noticeId)
+    )
 
     override fun saveNotice(notice: Notice) = noticeMapper.toDomain(
         noticeJpaRepository.save(
